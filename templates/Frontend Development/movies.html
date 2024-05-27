@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category }} Movies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/uesr_welc_bg.png');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-image: url('/static/transparent_background.png');
+            background-size: cover;
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-form select {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        .movie-tiles {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .movie-tile {
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .movie-tile h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .movie-tile p {
+            margin-bottom: 10px;
+        }
+
+        .ott-link-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .ott-link-button {
+            margin: 0 10px;
+        }
+
+        .ott-link-button img {
+            width: 100px;
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ category }} Movies</h1>
+        <form class="filter-form" method="get" action="{{ url_for('catalog', category=category) }}">
+            <select name="sort_by">
+                <option value="release_date" {% if request.args.get('sort_by') == 'release_date' %}selected{% endif %}>Release Date (New to Old)</option>
+                <option value="ratings" {% if request.args.get('sort_by') == 'ratings' %}selected{% endif %}>Ratings (1-10)</option>
+                <option value="ott_platform" {% if request.args.get('sort_by') == 'ott_platform' %}selected{% endif %}>OTT Platform</option>
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+        <div class="movie-tiles">
+            {% for movie in movies %}
+            <div class="movie-tile">
+                <h2>{{ movie[0] }}</h2> <!-- Movie name -->
+                <p><strong>Cast:</strong> {{ movie[1] }}</p> <!-- Casting -->
+                <p><strong>Summary:</strong> {{ movie[2] }}</p> <!-- Details of movie/Summary -->
+                <p><strong>Release Date:</strong> {{ movie[3] }}</p> <!-- Release date -->
+                <p><strong>Ratings:</strong> {{ movie[4] }}</p> <!-- Ratings -->
+                <div class="ott-link-buttons">
+                    <div class="ott-link-button">
+                        <a href="{{ url_for('movies.redirect_to_ott', ott_platform=movie[6], ott_link=movie[5]) }}">
+                            <img src="{{ url_for('static', filename=movie[6] + '_button.png') }}" alt="{{ movie[6] }}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
