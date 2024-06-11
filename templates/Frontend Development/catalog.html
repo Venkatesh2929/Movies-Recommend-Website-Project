@@ -86,9 +86,9 @@
         <h1>{{ category }} Movies</h1>
         <form class="filter-form" method="get" action="{{ url_for('catalog', category=category) }}">
             <select name="sort_by">
-                <option value="release_date" {% if request.args.get('sort_by') == 'release_date' %}selected{% endif %}>Release Date (New to Old)</option>
-                <option value="ratings" {% if request.args.get('sort_by') == 'ratings' %}selected{% endif %}>Ratings (1-10)</option>
-                <option value="ott_platform" {% if request.args.get('sort_by') == 'ott_platform' %}selected{% endif %}>OTT Platform</option>
+                <option value="release_date">Release Date (New to Old)</option>
+                <option value="ratings">Ratings (1-10)</option>
+                <option value="ott_platform">OTT Platform</option>
             </select>
             <button type="submit">Filter</button>
         </form>

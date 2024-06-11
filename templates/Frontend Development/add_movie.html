@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Movie</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles2.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Add Movie</h2>
+        <form action="{{ url_for('add_movie') }}" method="POST">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+                <option value="Telugu">Telugu</option>
+                <option value="Hindi">Hindi</option>
+                <option value="English">English</option>
+            </select>
+            <label for="movie_name">Movie Name</label>
+            <input type="text" id="movie_name" name="movie_name" required>
+            <label for="cast">Cast</label>
+            <input type="text" id="cast" name="cast" required>
+            <label for="summary">Summary</label>
+            <textarea id="summary" name="summary" required></textarea>
+            <label for="release_date">Release Date</label>
+            <input type="date" id="release_date" name="release_date" required>
+            <label for="ratings">Ratings</label>
+            <input type="number" id="ratings" name="ratings" step="0.1" min="0" max="10" required>
+            <label for="ott_link">OTT Link</label>
+            <input type="url" id="ott_link" name="ott_link" required>
+            <label for="ott_platform">OTT Platform</label>
+            <input type="text" id="ott_platform" name="ott_platform" required>
+            <button type="submit">Add Movie</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles2.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Movie</h2>
+        <form action="{{ url_for('edit_movie', category=movie[7], movie_name=movie[0]) }}" method="POST">
+            <label for="movie_name">Movie Name</label>
+            <input type="text" id="movie_name" name="movie_name" value="{{ movie[0] }}" required>
+            <label for="cast">Cast</label>
+            <input type="text" id="cast" name="cast" value="{{ movie[1] }}" required>
+            <label for="summary">Summary</label>
+            <textarea id="summary" name="summary" required>{{ movie[2] }}</textarea>
+            <label for="release_date">Release Date</label>
+            <input type="date" id="release_date" name="release_date" value="{{ movie[3] }}" required>
+            <label for="ratings">Ratings</label>
+            <input type="number" id="ratings" name="ratings" step="0.1" min="0" max="10" value="{{ movie[4] }}" required>
+            <label for="ott_link">OTT Link</label>
+            <input type="url" id="ott_link" name="ott_link" value="{{ movie[5] }}" required>
+            <label for="ott_platform">OTT Platform</label>
+            <input type="text" id="ott_platform" name="ott_platform" value="{{ movie[6] }}" required>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

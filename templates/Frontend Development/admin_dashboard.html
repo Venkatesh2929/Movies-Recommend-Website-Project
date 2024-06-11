@@ -7,7 +7,28 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles2.css') }}">
 </head>
 <body>
-    <h1>Welcome to the Admin Dashboard</h1>
-    <!-- Add your admin dashboard content here -->
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <p><a href="{{ url_for('add_movie') }}">Add Movie</a></p>
+        <h3>Existing Movies</h3>
+        {% for category, movies in movies_by_category.items() %}
+            <h4>{{ category }} Movies</h4>
+            <table>
+                <tr>
+                    <th>Movie Name</th>
+                    <th>Actions</th>
+                </tr>
+                {% for movie in movies %}
+                    <tr>
+                        <td>{{ movie[0] }}</td>
+                        <td>
+                            <a href="{{ url_for('edit_movie', category=category, movie_name=movie[0]) }}">Edit</a>
+                            <a href="{{ url_for('delete_movie', category=category, movie_name=movie[0]) }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endfor %}
+    </div>
 </body>
 </html>
