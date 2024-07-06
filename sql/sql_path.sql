@@ -42,7 +42,9 @@ CREATE TABLE english_movies (
 );
 
 
-INSERT INTO admin (username, password) VALUES ('admin', 'Venkat123');
+INSERT INTO admin (username, password) VALUES
+
+ ('Admin', 'Admin123');
 
 INSERT INTO telugu_movies (movie_name, cast, summary, release_date, ratings, ott_link, ott_platform, category)
 VALUES 
@@ -56,7 +58,7 @@ VALUES
  'Telugu');
 
 
-select * from telugu_movies;
+select * from telugu_movies;	
 
 	select * from hindi_movies;
 
